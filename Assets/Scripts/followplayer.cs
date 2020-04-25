@@ -1,27 +1,16 @@
-﻿using UnityEngine;
-using System;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Security.Cryptography;
+using UnityEngine;
 
-public class followplayer : MonoBehaviour
+public class FollowPlayer : MonoBehaviour
 {
-	public Transform player;
- //   public Transform Player2;
-	//[SerializeField] Vector3 posOffset;
- //   [SerializeField] Vector3 rotOffset;
- //   //public float distBtwn;
+    [SerializeField] Transform player;
 
- //   public float xRot;
- //   public float yRot;
- //   public float zRot;
- //   float z;
- //   float x;
- //   float y;
-
+    // Update is called once per frame
     void Update()
     {
-        float yDiff  = transform.position.y - player.position.y;
-        float zDiff =  transform.position.z - player.position.z;
-
-        transform.eulerAngles = new Vector3( 0, player.rotation.eulerAngles.y, 0);
         transform.position = player.position;
+        transform.eulerAngles = new Vector3(0f, player.rotation.eulerAngles.y, 0f);
     }
 }
