@@ -18,81 +18,88 @@ public class TrackBuilder : MonoBehaviour
         BuildTrack();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     void BuildTrack()
     {
-        Vector3 offset = trackPieces[0].GetComponent<Transform>().position;
-        Vector3 currRotation = trackPieces[0].GetComponent<Transform>().rotation.eulerAngles;
+        Vector3 position = trackPieces[0].transform.position;
+        Vector3 currRotation = trackPieces[0].transform.rotation.eulerAngles;
+        
         //currRotation.x = -1;
         int previousIndex = 0;
         int direction = 0;
         int pieceIndex = 0;
-        //offset.x -= step;
+        //position.x -= step;
         track[0] = Instantiate(trackPieces[pieceIndex]);
-        track[0].transform.position = new Vector3(offset.x, offset.y, offset.z);
+        track[0].transform.position = new Vector3(position.x, position.y, position.z);
 
 
         //for all in track[]
         for (int i = 1; i < trackLength; i++)
         {
             UnityEngine.Debug.LogError(direction);
-            
-            //currRotation.x = -90;
-            pieceIndex = Random.Range(0, 5);
-            if (pieceIndex >= 3)
-                pieceIndex = 0;
-            //if (pieceIndex == 1)
-            //    currRotation.y += 180;
-            //if (pieceIndex == 2)
-            //    currRotation.y += 90;
-            currRotation = trackPieces[pieceIndex].transform.eulerAngles;
-            if (previousIndex == 1)
-            {
-                direction = (++direction)%4;
-                currRotation.y -= 90;
-                // currRotation.y %= 360;
-            }
-            else if (previousIndex == 2)
-            {
-                direction += 3;
-                direction %= 4;
-               currRotation.y += 90;
-               //currRotation.y %= 360;
-            }
-            //currRotation.z = 0;
-            //currRotation.y += 90;
-            //currRotation.x = -90;
-            if (direction == 2)
+
+            pieceIndex = Random.Range(0, 10);
+            if (pieceIndex >= 8)
+                pieceIndex = 5;
+            if (pieceIndex >= 6)
+                pieceIndex = 4;
+
+            if (direction == 0)
             { 
-                offset.x += step;
-            }
-            else if (direction == 3)
-            {
-                offset.z -= step;
-            }
-            else if (direction == 0)
-            {
-                offset.x -= step;
+                position.x += step;
             }
             else if (direction == 1)
             {
-                offset.z += step;
+                position.z -= step;
             }
-            //currPosition.x += 3;
+            else if (direction == 2)
+            {
+                position.x -= step;
+            }
+            else if (direction == 3)
+            {
+                position.z += step;
+            }
+            //position.x += step;
 
+            if (pieceIndex == 2)
+            {
+                
+                currRotation.y += 90.0f;
+                currRotation.y %= 360f;
+            }
+            if (pieceIndex == 4) //UP
+            {
+                currRotation.y += 180f;
+            }
+            if (pieceIndex == 5) //DOWN
+            {
+                position.y -= 1.2f;
+            }
+            currRotation.x = -89.98f;
             track[i] = Instantiate(trackPieces[pieceIndex]);
-            track[i].transform.position = new Vector3(offset.x, offset.y, offset.z);
+            track[i].transform.position = new Vector3(position.x, position.y, position.z);
             track[i].transform.eulerAngles = currRotation;
-            
-            //randomly instantiate track piece
-            //do more straight than turn
-            // 4:1 OR 3:1 
-            //if a turn 
-            //randomly decide right or left turn
+
+            if (pieceIndex == 1)
+            {
+                direction = (++direction) % 4;
+                currRotation.y += 90f;
+                currRotation.y %= 360f;
+            }
+            else if (pieceIndex == 2)
+            {
+                direction += 3;
+                direction %= 4;
+                currRotation.y -= 180f;
+                currRotation.y %= 360f;
+            }
+            else if (pieceIndex == 4) // UP
+            {
+                currRotation.y -= 180f;
+                position.y += 1.2f;
+            }
+
+
             previousIndex = pieceIndex;
         }
 
