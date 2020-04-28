@@ -38,10 +38,9 @@ public class TrackBuilder : MonoBehaviour
             UnityEngine.Debug.LogError(direction);
 
             pieceIndex = Random.Range(0, 10);
-            if (pieceIndex >= 8)
-                pieceIndex = 5;
+            
             if (pieceIndex >= 6)
-                pieceIndex = 4;
+                pieceIndex = 0;
 
             if (direction == 0)
             { 
@@ -75,7 +74,7 @@ public class TrackBuilder : MonoBehaviour
             {
                 position.y -= 1.2f;
             }
-            currRotation.x = -89.98f;
+            //currRotation.x = -89.98f;
             track[i] = Instantiate(trackPieces[pieceIndex]);
             track[i].transform.position = new Vector3(position.x, position.y, position.z);
             track[i].transform.eulerAngles = currRotation;
