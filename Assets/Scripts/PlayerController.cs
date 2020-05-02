@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
 	public void Reset()
 	{
-		t.position = new Vector3(t.position.x, 9f, t.position.z);
+		t.position = new Vector3(t.position.x, t.position.y + 2, t.position.z);
 		t.rotation = Quaternion.Euler(0, t.rotation.eulerAngles.y, 0);
 	}
 
