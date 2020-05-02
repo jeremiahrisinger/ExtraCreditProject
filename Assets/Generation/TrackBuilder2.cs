@@ -166,9 +166,9 @@ public class TrackBuilder2 : MonoBehaviour
         
         track[trackIndex].direction = currDir;
        
-        //UnityEngine.Debug.LogError(track[trackIndex].x + mid);
-        //UnityEngine.Debug.LogError(track[trackIndex].y + mid);
-        //UnityEngine.Debug.LogError(track[trackIndex].z + mid);
+        ////UnityEngine.Debug.LogError(track[trackIndex].x + mid);
+        ////UnityEngine.Debug.LogError(track[trackIndex].y + mid);
+        ////UnityEngine.Debug.LogError(track[trackIndex].z + mid);
         if (!containsPiece[track[trackIndex].x + mid, track[trackIndex].y + mid, track[trackIndex].z + mid])
         {
                 return ( (containsPiece[track[trackIndex].x + mid,
@@ -224,7 +224,7 @@ public class TrackBuilder2 : MonoBehaviour
         for (i = 2; i < trackLength; i++)
         {
             yield return new WaitForSeconds(1.0f/renderSpeed);
-            //UnityEngine.Debug.LogError(currDir);
+            ////UnityEngine.Debug.LogError(currDir);
             pieceIndex = UnityEngine.Random.Range(0, straightness+5);
             if (pieceIndex > 5) pieceIndex = 0;
 
@@ -234,20 +234,20 @@ public class TrackBuilder2 : MonoBehaviour
             aboveOk = !PieceAbove(track[i]);
             if (canSetData && !nearEdge && aboveOk && belowOk)
             {
-                UnityEngine.Debug.LogError("all good");
+                //UnityEngine.Debug.LogError("all good");
                 InstantiatePiece(track[i], i);
             }
             else if (!canSetData)//this one has to override near edge if it is near an edge
             {
 
-                UnityEngine.Debug.LogError("bitch we sharing this shit.");
+                //UnityEngine.Debug.LogError("bitch we sharing this shit.");
                 undoDataSet(i,pieceIndex);
                 int overlap = GetPieceOverlaping(track[i]);
                 oppositeDirections = (track[i].direction % 2) != (track[overlap].direction % 2);
                 //track[overlap] and track[i] have the same position;
                 if (overlap == -1)
                 {
-                    UnityEngine.Debug.LogError("There is actually NOT an overlap...");
+                    //UnityEngine.Debug.LogError("There is actually NOT an overlap...");
                 }
 
                 if (oppositeDirections && track[overlap].index == 0)//create crisscross
@@ -278,7 +278,7 @@ public class TrackBuilder2 : MonoBehaviour
             }
             else if (!aboveOk && !belowOk)
             {
-                UnityEngine.Debug.LogError("cant above or below so im going straight");
+                //UnityEngine.Debug.LogError("cant above or below so im going straight");
                 undoDataSet(i,pieceIndex);
                 pieceIndex = 0;
                 SetTrackData(i, pieceIndex);
@@ -286,7 +286,7 @@ public class TrackBuilder2 : MonoBehaviour
             }
             else if (!aboveOk)
             {
-                UnityEngine.Debug.LogError("cant go up so i going down");
+                //UnityEngine.Debug.LogError("cant go up so i going down");
                 undoDataSet(i,pieceIndex);
                 pieceIndex = 5;
                 SetTrackData(i, pieceIndex);
@@ -294,7 +294,7 @@ public class TrackBuilder2 : MonoBehaviour
             }
             else if (!belowOk)
             {
-                UnityEngine.Debug.LogError("cant go down so i going up");
+                //UnityEngine.Debug.LogError("cant go down so i going up");
                 undoDataSet(i,pieceIndex);
                 pieceIndex = 4;
                 SetTrackData(i, pieceIndex);
@@ -302,7 +302,7 @@ public class TrackBuilder2 : MonoBehaviour
             }
             else if (nearEdge)
             {
-                UnityEngine.Debug.LogError("too close to edge!! turning around");
+                //UnityEngine.Debug.LogError("too close to edge!! turning around");
                 undoDataSet(i,pieceIndex);
                 SetTrackData(i, 1);
                 InstantiatePiece(track[i], i);
