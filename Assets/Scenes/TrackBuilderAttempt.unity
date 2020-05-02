@@ -163,13 +163,13 @@ MonoBehaviour:
   trackGameObjects: []
   player: {fileID: 3289061653150039925, guid: 74642c51f8539ac4f93c5bd32fc826d4, type: 3}
   track: []
-  trackLength: 200
-  sizeOfField: 33
-  straightness: 17
+  trackLength: 1000
+  sizeOfField: 100
+  straightness: 3
   stepXZ: 6
   stepY: 1.2
   randomSeed: 1
-  renderSpeed: 8
+  renderSpeed: 18.01
   mid: 0
 --- !u!4 &1113545841
 Transform:
